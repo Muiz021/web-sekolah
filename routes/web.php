@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\admin\MisiSekolahController;
 use App\Http\Controllers\admin\VisiSekolahController;
 use App\Http\Controllers\admin\ProfilSekolahController;
 use App\Http\Controllers\admin\ProfilKepalaSekolahController;
-use App\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,12 @@ use App\Http\Controllers\FrontController;
 |
 */
 
-Route::get('/', [FrontController::class, 'home'])->name('home');
+Route::name('front.')->group(
+    function () {
+        Route::get('/', [FrontController::class, 'home'])->name('home');
+        Route::get('/guru', [FrontController::class, 'guru'])->name('guru');
+    }
+);
 
 Route::prefix('admin')->group(function () {
     Route::get('/profil-kepala-sekolah', [ProfilKepalaSekolahController::class, 'index']);
@@ -46,4 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/edit-misi-sekolah/{id}', [MisiSekolahController::class, 'edit']);
     Route::post('/update-misi-sekolah/{id}', [MisiSekolahController::class, 'update']);
     Route::get('/delete-misi-sekolah/{id}', [MisiSekolahController::class, 'delete']);
+
+    Route::resource('guru', GuruController::class);
+    Route::resource('user', UserController::class);
 });

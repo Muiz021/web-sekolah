@@ -16,6 +16,3 @@
  <script src="{{ asset('back/js/main.js') }}"></script>
 
  <!-- Page JS -->
- <script src="{{ asset('back/js/ui-modals.js')}}"></script>
-
- <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -37,10 +37,10 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="{{ route('home') }}">Home</a></li>
+                                    <li><a href="{{ route('front.home') }}">Home</a></li>
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="courses.html">Courses</a></li>
-                                    <li><a href="instructor.html">Instructors</a></li>
+                                    <li><a href="{{ route('front.guru') }}">Guru</a></li>
                                     <li><a href="blog.html">Blog</a>
                                         <ul class="submenu">
                                             <li><a href="blog.html">Blog</a></li>
