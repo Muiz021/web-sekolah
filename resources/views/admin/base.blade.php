@@ -56,6 +56,8 @@
     </div>
     <!-- / Layout wrapper -->
 
+    @include('admin.partials.script')
+    @stack('script')
 </body>
 
 </html>

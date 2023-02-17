@@ -1,11 +1,11 @@
 @extends('admin.base')
 
-
 @section('title', 'Profil Kepala Sekolah')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">@yield('title')</h4>
         <div class="card mb-4">
+
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     @if ($data == null)
@@ -20,12 +20,14 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-3">
-                                <img src="{{ $data->gambar != null ? asset('images/' . $data->gambar) : asset('back/img/avatars/1.png') }}" alt="" width="100%" height="200" class="rounded-circle">
+                                <img src="{{ $data->gambar != null ? asset('images/' . $data->gambar) : asset('back/img/avatars/1.png') }}"
+                                    alt="" width="100%" height="200" class="rounded-circle">
                             </div>
                             <div class="col-9">
                                 <div class="mb-3">
                                     <label for="defaultFormControlInput" class="form-label">Nama</label>
-                                    <input type="text" class="form-control bg-light" id="defaultFormControlInput" value="{{ $data->nama }}" disabled>
+                                    <input type="text" class="form-control bg-light" id="defaultFormControlInput"
+                                        value="{{ $data->nama }}" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
