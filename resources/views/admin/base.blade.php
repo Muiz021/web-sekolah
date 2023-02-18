@@ -55,9 +55,12 @@
         <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
+<<<<<<< Updated upstream
 
     @include('admin.partials.script')
     @stack('script')
+=======
+@yield('scripts')
+>>>>>>> Stashed changes
 </body>
-
 </html>

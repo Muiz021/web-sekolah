@@ -79,11 +79,16 @@
             </a>
         </li>
         <li class="menu-item">
+<<<<<<< Updated upstream
             <a href="{{ url('visi-sekolah') }}" class="menu-link">
+=======
+            <a href="{{url('visi-dan-misi')}}" class="menu-link">
+>>>>>>> Stashed changes
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Page 2">Visi</div>
+                <div data-i18n="Page 2">Visi dan Misi</div>
             </a>
         </li>
+<<<<<<< Updated upstream
         <li class="menu-item">
             <a href="{{ url('misi-sekolah') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -102,5 +107,13 @@
                 <div>User</div>
             </a>
         </li>
+=======
+        {{-- <li class="menu-item">
+            <a href="{{url('misi-sekolah')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Page 2">Misi</div>
+            </a>
+        </li> --}}
+>>>>>>> Stashed changes
     </ul>
 </aside>

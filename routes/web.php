@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\VisiDanMisiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\GuruController;
@@ -57,3 +58,29 @@ Route::prefix('admin')->group(function () {
     Route::resource('guru', GuruController::class);
     Route::resource('user', UserController::class);
 });
+<<<<<<< Updated upstream
+=======
+
+
+Route::get('/profil-kepala-sekolah',[ProfilKepalaSekolahController::class,'index']);
+Route::get('/membuat-profil-kepala-sekolah',[ProfilKepalaSekolahController::class,'create']);
+Route::post('/store-profil-kepala-sekolah',[ProfilKepalaSekolahController::class,'store']);
+Route::get('/edit-profil-kepala-sekolah',[ProfilKepalaSekolahController::class,'edit']);
+Route::post('/update-profil-kepala-sekolah',[ProfilKepalaSekolahController::class,'update']);
+
+Route::get('/profil-sekolah',[ProfilSekolahController::class,'index']);
+Route::get('/membuat-profil-sekolah',[ProfilSekolahController::class,'create']);
+Route::post('/store-profil-sekolah',[ProfilSekolahController::class,'store']);
+Route::get('/edit-profil-sekolah',[ProfilSekolahController::class,'edit']);
+Route::post('/update-profil-sekolah',[ProfilSekolahController::class,'update']);
+
+Route::resource('/visi-dan-misi',VisiDanMisiController::class);
+
+// Route::get('/visi-sekolah',[VisiSekolahController::class,'index']);
+// Route::get('/membuat-visi-sekolah',[VisiSekolahController::class,'create']);
+// Route::post('/store-visi-sekolah',[VisiSekolahController::class,'store']);
+// Route::get('/edit-visi-sekolah',[VisiSekolahController::class,'edit']);
+// Route::post('/update-visi-sekolah',[VisiSekolahController::class,'update']);
+// Route::get('/delete-visi-sekolah',[VisiSekolahController::class,'delete']);
+
+>>>>>>> Stashed changes
