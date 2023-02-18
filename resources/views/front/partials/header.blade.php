@@ -25,13 +25,13 @@
             <div class="header-bottom header-sticky">
                 <!-- Logo -->
                 <div class="logo d-none d-lg-block">
-                    <a href="index.html"><img src="{{ asset('front/img/logo/logo.png') }}" alt=""></a>
+                    <a href="index.html"><img src="{{ asset('front/img/logo/logo.png') }}" width="30px" height="30px" alt=""></a>
                 </div>
                 <div class="container">
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo logo2 d-block d-lg-none">
-                            <a href="index.html"><img src="{{ asset('front/img/logo/logo.png') }}" alt=""></a>
+                            {{-- <a href="index.html"><img src="{{ asset('front/img/logo/logo.png') }}" alt=""></a> --}}
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -41,13 +41,7 @@
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="courses.html">Courses</a></li>
                                     <li><a href="{{ route('front.guru') }}">Guru</a></li>
-                                    <li><a href="blog.html">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog_details.html">Blog Details</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{{ route('front.berita') }}">Berita</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </nav>

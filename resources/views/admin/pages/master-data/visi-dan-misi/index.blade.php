@@ -9,22 +9,30 @@
             @if ($visiDanMisiSekolah == null)
                 <div class="card-header">
                     <div class="col-lg-4 col-md-8">
-                        <a href="{{ url('/visi-dan-misi/create') }}" class="btn btn-primary">
+                        <a href="{{ url('/admin/visi-dan-misi/create') }}" class="btn btn-primary">
                             Membuat
                         </a>
                     </div>
                 </div>
             @endif
-            <div class="card-body">
-                <div>
-                    <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
-                    {!! $visiDanMisiSekolah->deskripsi !!}
-                    @if ($visiDanMisiSekolah != null)
-                    <a href="{{ url('/visi-dan-misi/'.$visiDanMisiSekolah->id.'/edit') }}" class="btn btn-primary float-end">
-                        Edit
-                    </a>
-                    @endif
+            @if ($visiDanMisiSekolah != null)
+                <div class="card-body">
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
+                        {!! $visiDanMisiSekolah->deskripsi !!}
+                        <form action="{{ url('/admin/visi-dan-misi/' . $visiDanMisiSekolah->id) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger float-end ms-3">
+                                Hapus
+                            </button>
+                        </form>
+                        <a href="{{ url('/admin/visi-dan-misi/' . $visiDanMisiSekolah->id . '/edit') }}" class="btn btn-success float-end">
+                            Edit
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
-        @endsection
+    </div>
+@endsection

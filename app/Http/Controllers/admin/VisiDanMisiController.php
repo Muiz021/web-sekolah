@@ -24,7 +24,7 @@ class VisiDanMisiController extends Controller
         $data = new VisiDanMisi();
         $data->deskripsi = $request->deskripsi;
         $data->save();
-        return redirect('visi-dan-misi');
+        return redirect('admin/visi-dan-misi');
     }
 
     public function edit($id)
@@ -38,7 +38,7 @@ class VisiDanMisiController extends Controller
         $data = VisiDanMisi::find($id);
         $data->deskripsi = $request->deskripsi;
         $data->update();
-        return redirect('visi-dan-misi');
+        return redirect('admin/visi-dan-misi');
     }
 
     public function show()
@@ -47,11 +47,11 @@ class VisiDanMisiController extends Controller
         return view('admin.pages.master-data.visi-dan-misi.index', compact('visiDanMisiSekolah'));
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $data = VisiDanMisi::find($id);
         $data->delete();
-        return redirect('visi-dan-Misi');
+        return redirect('admin/visi-dan-misi');
     }
 }
 

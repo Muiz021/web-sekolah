@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="../../assets/" data-template="vertical-menu-template-no-customizer-starter">
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template-no-customizer-starter">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Admin | @yield('title')</title>
 
@@ -55,12 +53,12 @@
         <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
-<<<<<<< Updated upstream
 
     @include('admin.partials.script')
     @stack('script')
-=======
-@yield('scripts')
->>>>>>> Stashed changes
+
+    @yield('scripts')
+    @yield('scripts2')
 </body>
+
 </html>

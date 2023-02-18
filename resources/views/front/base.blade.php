@@ -2,7 +2,7 @@
 <html class="no-js" lang="zxx">
 
 <head>
-    <title> Education | Template </title>
+    <title> MTs LANGUAGE INSAN MANDIRI | @yield('title')</title>
 
     @include('front.partials.style')
     @stack('style')

@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-8">
                 <div class="card py-3 px-3">
-                    <form action="{{ url('/visi-dan-misi') }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ url('/admin/visi-dan-misi') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-company">Deskripsi</label>
@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+    </div>
     @endsection
 
     @section('scripts')

@@ -67,33 +67,25 @@
             <span class="menu-header-text">Master Data</span>
         </li>
         <li class="menu-item">
-            <a href="{{ url('/profil-sekolah') }}" class="menu-link">
+            <a href="{{ url('admin/profil-sekolah') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Page 2">Profil Sekolah</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ url('/profil-kepala-sekolah') }}" class="menu-link">
+            <a href="{{ url('admin/profil-kepala-sekolah') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Page 2">Profil Kepala Sekolah</div>
             </a>
         </li>
         <li class="menu-item">
-<<<<<<< Updated upstream
-            <a href="{{ url('visi-sekolah') }}" class="menu-link">
-=======
-            <a href="{{url('visi-dan-misi')}}" class="menu-link">
->>>>>>> Stashed changes
+            <a href="{{url('admin/visi-dan-misi')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Page 2">Visi dan Misi</div>
             </a>
         </li>
-<<<<<<< Updated upstream
-        <li class="menu-item">
-            <a href="{{ url('misi-sekolah') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Page 2">Misi</div>
-            </a>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Klien</span>
         </li>
         <li class="menu-item {{ request()->is('admin/guru*') ? 'active' : '' }}">
             <a href="{{ route('guru.index') }}" class="menu-link">
@@ -107,13 +99,14 @@
                 <div>User</div>
             </a>
         </li>
-=======
-        {{-- <li class="menu-item">
-            <a href="{{url('misi-sekolah')}}" class="menu-link">
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Berita</span>
+        </li>
+        <li class="menu-item {{ request()->is('admin/berita') ? 'active' : '' }}">
+            <a href="{{ route('berita.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Page 2">Misi</div>
+                <div>Berita</div>
             </a>
-        </li> --}}
->>>>>>> Stashed changes
+        </li>
     </ul>
 </aside>
