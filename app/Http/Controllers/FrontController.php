@@ -21,17 +21,26 @@ class FrontController extends Controller
         return view('front.pages.guru', compact('gurus'));
     }
 
-    public function berita()
+    public function berita(Request $request)
     {
-        $beritaSekolah = BeritaSekolah::get();
+        if($request){
+            $beritaSekolah = BeritaSekolah::where('judul','like','%'.$request->cari.'%')->paginate(5);
+        }else{
+            $beritaSekolah = BeritaSekolah::paginate(5);
+        }
         $postTerbaru = BeritaSekolah::orderBy('created_at','DESC')->limit(6)->get();
-        return view('front.pages.berita.berita',compact('beritaSekolah','postTerbaru'));
+
+
+        return view('front.pages.berita.berita',compact('beritaSekolah','postTerbaru','request'));
     }
 
-    public function berita_detail($slug)
+    public function berita_detail(Request $request, $slug)
     {
+         if($request){
+            $cariBerita = BeritaSekolah::where('judul','like','%'.$request->cari.'%')->get();
+        }
         $beritaSekolah = BeritaSekolah::where('slug',$slug)->first();
-        $postTerbaru = BeritaSekolah::orderBy('created_at','DESC')->limit(10)->get();
-        return view('front.pages.berita.detail-berita',compact('beritaSekolah','postTerbaru'));
+        $postTerbaru = BeritaSekolah::orderBy('created_at','DESC')->limit(6)->get();
+        return view('front.pages.berita.detail-berita',compact('beritaSekolah','postTerbaru','cariBerita','request'));
     }
 }

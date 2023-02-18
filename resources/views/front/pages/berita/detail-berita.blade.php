@@ -44,6 +44,19 @@
                  </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <form action="{{url('/berita')}}" method="get">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="cari" class="form-control" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" value="{{$request->cari}}">
+                                        <div class="input-group-append">
+                                            <button class="btns" type="button"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Mencari</button>
+                            </form>
+                        </aside>
                         <aside class="single_sidebar_widget popular_post_widget">
                             <h3 class="widget_title" style="color: #2d2d2d;">Post Terbaru</h3>
                            @foreach ($postTerbaru as $item)
@@ -51,7 +64,7 @@
                             <img src="{{asset('images/berita/'.$item->gambar)}}" width="30px" height="30px" alt="post">
                             <div class="media-body">
                                 <a href="{{url('berita-detail/'.$item->slug)}}">
-                                    <h3 style="color: #2d2d2d;">{!!Str::limit($item->deskripsi,50)!!}</h3>
+                                    <h3 style="color: #2d2d2d;">{!!Str::limit($item->judul,50)!!}</h3>
                                 </a>
                                 <p>{{date('d F , Y',strtotime($item->created_at))}}</p>
                             </div>

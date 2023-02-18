@@ -48,8 +48,10 @@
                         </article>
                            @endforeach
 
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
+
+                           <nav class="blog-pagination justify-content-center d-flex">
+                               {{ $beritaSekolah->links() }}
+                               <ul class="pagination">
                                     <li class="page-item">
                                         <a href="#" class="page-link" aria-label="Previous">
                                             <i class="ti-angle-left"></i>
@@ -73,10 +75,10 @@
                     <div class="col-lg-4">
                         <div class="blog_right_sidebar">
                             <aside class="single_sidebar_widget search_widget">
-                                <form action="#">
+                                <form action="{{url('/berita')}}" method="get">
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                                            <input type="text" name="cari" class="form-control" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" value="{{$request->cari}}">
                                             <div class="input-group-append">
                                                 <button class="btns" type="button"><i class="ti-search"></i></button>
                                             </div>
@@ -92,7 +94,7 @@
                                 <img src="{{asset('images/berita/'.$item->gambar)}}" width="30px" height="30px" alt="post">
                                 <div class="media-body">
                                     <a href="{{url('berita-detail/'.$item->slug)}}">
-                                        <h3 style="color: #2d2d2d;">{!!Str::limit($item->deskripsi,50)!!}</h3>
+                                        <h3 style="color: #2d2d2d;">{!!Str::limit($item->judul,50)!!}</h3>
                                     </a>
                                     <p>{{date('d F , Y',strtotime($item->created_at))}}</p>
                                 </div>
