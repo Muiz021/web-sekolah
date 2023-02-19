@@ -24,13 +24,15 @@
             <div class="container mb-100">
                 @if ($tentangKepalaSekolah != null)
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-lg-8 col-md-8 mx-auto">
                         <div class="d-flex justify-content-center">
                             <img src="{{ asset('images/foto/' . $tentangKepalaSekolah->gambar) }}" alt="">
                         </div>
 
                         <h1 class="my-5"><b>{{ $tentangKepalaSekolah->nama }}</b></h1>
-                        <p style="text-align:justify">{!! $tentangKepalaSekolah->deskripsi !!}</p>
+                        <div class="text-justify">
+                            {!! $tentangKepalaSekolah->deskripsi !!}
+                        </div>
                     </div>
                 </div>
                 @endif

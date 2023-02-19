@@ -23,13 +23,15 @@
         <div class="team-area pt-160">
             <div class="container mb-100">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-lg-8 col-md-8 mx-auto">
                         <div class="d-flex justify-content-center">
                             <img src="{{ asset('images/foto/' . $tentangSekolah->gambar) }}" alt="">
                         </div>
 
                         <h1 class="my-5"><b>{{ $tentangSekolah->nama }}</b></h1>
-                        <p style="text-align:justify">{!! $tentangSekolah->deskripsi !!}</p>
+                        <div class="text-justify">
+                            {!! $tentangSekolah->deskripsi !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,7 +39,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="lokasi-sekolah col-12 mt-5">
-                            <div class="d-flex justify-content-center mb-50 mt-100">
+                            <div class="d-flex justify-content-center mb-50 mt-60">
                                 <h1 style="font-size: 50px">
                                     <b>Lokasi Sekolah</b>
                                 </h1>

@@ -23,7 +23,7 @@
         <div class="team-area pt-160 pb-180">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 mx-auto">
+                    <div class="col-lg-8 col-md-8 text-justify mx-auto">
                         {!!$visiDanMisiSekolah->deskripsi!!}
                     </div>
                 </div>
