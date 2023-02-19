@@ -43,4 +43,9 @@ class FrontController extends Controller
         $postTerbaru = BeritaSekolah::orderBy('created_at','DESC')->limit(6)->get();
         return view('front.pages.berita.detail-berita',compact('beritaSekolah','postTerbaru','cariBerita','request'));
     }
+
+    public function tentang_sekolah()
+    {
+        return view('front.pages.profil.tentang-sekolah');
+    }
 }

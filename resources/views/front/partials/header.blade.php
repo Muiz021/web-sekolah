@@ -37,12 +37,16 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="{{ route('front.home') }}">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="courses.html">Courses</a></li>
+                                    <li><a href="{{ route('front.home') }}">Beranda</a></li>
+                                    <li><a href="#">Profil</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{route('front.tentang-sekolah')}}">Tentang Sekolah</a></li>
+                                            <li><a href="#">Visi dan Misi</a></li>
+                                            <li><a href="#">Kepala Sekolah</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a href="{{ route('front.guru') }}">Guru</a></li>
                                     <li><a href="{{ route('front.berita') }}">Berita</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>

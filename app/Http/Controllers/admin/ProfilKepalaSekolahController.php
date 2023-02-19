@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProfilKepalaSekolah;
 use App\Http\Controllers\Controller;
@@ -15,57 +16,70 @@ class ProfilKepalaSekolahController extends Controller
         return view('admin.pages.master-data.profil-kepala-sekolah.index', compact('data'));
     }
 
-    public function create()
-    {
-        return view('admin.pages.master-data.profil-kepala-sekolah.create');
-    }
 
     public function store(Request $request)
     {
-        $profilKepalaSekolah = new ProfilKepalaSekolah();
-        $profilKepalaSekolah->nama = $request->nama;
-        $profilKepalaSekolah->deskripsi = $request->deskripsi;
-        $profilKepalaSekolah->gambar = $request->gambar;
+        $this->validate($request, [
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
 
-        $input = $profilKepalaSekolah;
+        $foto = $request->file('gambar');
+        $penyimpananPublik = 'images/foto/';
+        $namaGambar = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
+        $foto->move($penyimpananPublik, $namaGambar);
 
-        if ($request->file('gambar')) {
-            $input->gambar = $request->file('gambar')->store('');
-        }
+        ProfilKepalaSekolah::create([
+            'gambar' => $namaGambar,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
-        $input->save();
-
-        return redirect('profil-kepala-sekolah');
+        return redirect()->back();
     }
 
-    public function edit()
+
+
+    public function update(Request $request,$id)
     {
-        $data = ProfilKepalaSekolah::first();
-        return view('admin.pages.master-data.profil-kepala-sekolah.edit', compact('data'));
+        $this->validate($request, [
+            'gambar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $profilKepalaSekolah = ProfilKepalaSekolah::findorfail($id);
+
+        if ($request->file('gambar')) {
+            $file_path = public_path() . "/images/foto/" . $profilKepalaSekolah->gambar;
+            unlink($file_path);
+
+            $foto = $request->file('gambar');
+            $penyimpananPublik = 'images/foto/';
+            $namaGambar = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
+            $foto->move($penyimpananPublik, $namaGambar);
+
+
+            $profilKepalaSekolah->update([
+                'gambar' => $namaGambar,
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi
+            ]);
+        } else {
+            $profilKepalaSekolah->update([
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi
+            ]);
+        }
+
+        return redirect()->back();
     }
 
-    public function update(Request $request)
+    public function destroy($id)
     {
-        $profilKepalaSekolah = ProfilKepalaSekolah::first();
+        $profilKepalaSekolah = ProfilKepalaSekolah::findorfail($id);
 
-        $profilKepalaSekolah->nama = $request->nama;
-        $profilKepalaSekolah->deskripsi = $request->deskripsi;
-        $profilKepalaSekolah->gambar = $request->gambar;
+        $file_path = public_path() . "/images/foto/" . $profilKepalaSekolah->gambar;
+        unlink($file_path);
 
-        $input = $profilKepalaSekolah;
-
-        if ($request->file('gambar')) {
-            if ($request->gambarLama) {
-                File::delete('images/' . $request->gambarLama);
-            }
-        }
-
-        if ($request->file('gambar')) {
-            $input->gambar = $request->file('gambar')->store('');
-        }
-
-        $input->update();
-
-        return redirect('profil-kepala-sekolah');
+        $profilKepalaSekolah->delete();
+        return redirect()->back();
     }
 }

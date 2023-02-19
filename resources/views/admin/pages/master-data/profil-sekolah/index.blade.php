@@ -10,9 +10,12 @@
                 <div class="col-lg-4 col-md-6">
                     @if ($data == null)
                         <div class="card-header">
-                            <a href="{{ url('/membuat-profil-sekolah') }}" class="btn btn-primary">
-                                Membuat
-                            </a>
+                            <div class="pt-3 pt-md-0">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-profil-sekolah">
+                                    <span><i class="bx bx-plus me-sm-2"></i><span class="d-none d-sm-inline-block">Tambah
+                                            Profil Sekolah</span></span>
+                                </button>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -20,7 +23,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-3">
-                                <img src="{{ $data->gambar != null ? asset('images/' . $data->gambar) : asset('back/img/avatars/1.png') }}" alt="" width="100%" height="200" class="rounded-circle">
+                                <img src="{{ $data->gambar != null ? asset('images/foto/' . $data->gambar) : asset('back/img/avatars/1.png') }}" alt="" width="100%" height="200" class="rounded-circle">
                             </div>
                             <div class="col-9">
                                 <div class="mb-3">
@@ -29,19 +32,25 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
-                                    <textarea name="" id="" cols="30" rows="5" class="form-control bg-light" disabled>{{ $data->deskripsi }}</textarea>
-
+                                    <div class="form-control">
+                                        {!! $data->deskripsi !!}
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <a href="{{ url('/edit-profil-sekolah') }}" class="btn btn-primary">
-                                    Edit
-                                </a>
+                                <button class="btn btn-danger btn-sm me-3" type="button" data-bs-toggle="modal"
+                                data-bs-target="#delete-modal-{{ $data->id }}"><span><i
+                                        class="bx bx-trash me-sm-2"></i> <span
+                                        class="d-none d-sm-inline-block">Delete</span></span>
+                            </button>
+                            <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#edit-modal-{{$data->id}}"><span><i class="bx bx-edit me-sm-2"></i> <span class="d-none d-sm-inline-block">Edit</span></span>
+                            </button>
                             </div>
                         </div>
                     </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
-    </div>
-    @endsection
+        @include('admin.pages.master-data.profil-sekolah.modal')
+@endsection
