@@ -27,6 +27,8 @@ Route::name('front.')->group(
         Route::get('/berita', [FrontController::class, 'berita'])->name('berita');
         Route::get('/berita-detail/{slug}', [FrontController::class, 'berita_detail']);
         Route::get('/tentang-sekolah',[FrontController::class,'tentang_sekolah'])->name('tentang-sekolah');
+        Route::get('/visi-dan-misi-sekolah',[FrontController::class,'visi_dan_misi_sekolah'])->name('visi-dan-misi-sekolah');
+        Route::get('/tentang-kepala-sekolah',[FrontController::class,'tentang_kepala_sekolah'])->name('tentang-kepala-sekolah');
     }
 );
 

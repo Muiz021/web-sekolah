@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\ProfilKepalaSekolah;
+use App\Models\VisiDanMisi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\BeritaSekolah;
+use App\Models\ProfilSekolah;
 use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
@@ -46,6 +49,19 @@ class FrontController extends Controller
 
     public function tentang_sekolah()
     {
-        return view('front.pages.profil.tentang-sekolah');
+        $tentangSekolah = ProfilSekolah::first();
+        return view('front.pages.profil.tentang-sekolah',compact('tentangSekolah'));
+    }
+
+    public function visi_dan_misi_sekolah()
+    {
+        $visiDanMisiSekolah = VisiDanMisi::first();
+        return view('front.pages.profil.visi-dan-misi',compact('visiDanMisiSekolah'));
+    }
+
+    public function tentang_kepala_sekolah()
+    {
+        $tentangKepalaSekolah = ProfilKepalaSekolah::first();
+        return view('front.pages.profil.tentang-kepala-sekolah',compact('tentangKepalaSekolah'));
     }
 }

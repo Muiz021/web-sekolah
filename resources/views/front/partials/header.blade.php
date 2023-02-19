@@ -41,8 +41,8 @@
                                     <li><a href="#">Profil</a>
                                         <ul class="submenu">
                                             <li><a href="{{route('front.tentang-sekolah')}}">Tentang Sekolah</a></li>
-                                            <li><a href="#">Visi dan Misi</a></li>
-                                            <li><a href="#">Kepala Sekolah</a></li>
+                                            <li><a href="{{route('front.visi-dan-misi-sekolah')}}">Visi dan Misi</a></li>
+                                            <li><a href="{{route('front.tentang-kepala-sekolah')}}">Kepala Sekolah</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="{{ route('front.guru') }}">Guru</a></li>
