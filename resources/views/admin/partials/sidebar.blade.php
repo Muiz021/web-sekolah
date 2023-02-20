@@ -66,19 +66,19 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Master Data</span>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ request()->is('admin/profil-sekolah') ? 'active' : '' }}">
             <a href="{{ url('admin/profil-sekolah') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <i class='menu-icon bx bxs-school'></i>
                 <div data-i18n="Page 2">Profil Sekolah</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ request()->is('admin/profil-kepala-sekolah') ? 'active' : '' }}">
             <a href="{{ url('admin/profil-kepala-sekolah') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <i class='menu-icon bx bxs-user'></i>
                 <div data-i18n="Page 2">Profil Kepala Sekolah</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ request()->is('admin/visi-dan-misi') ? 'active' : '' }}">
             <a href="{{url('admin/visi-dan-misi')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Page 2">Visi dan Misi</div>
@@ -89,13 +89,13 @@
         </li>
         <li class="menu-item {{ request()->is('admin/guru*') ? 'active' : '' }}">
             <a href="{{ route('guru.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <i class='menu-icon bx bxs-user-circle'></i>
                 <div>Guru</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/user*') ? 'active' : '' }}">
             <a href="{{ route('user.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <i class='menu-icon bx bxs-user-circle'></i>
                 <div>User</div>
             </a>
         </li>
@@ -104,7 +104,7 @@
         </li>
         <li class="menu-item {{ request()->is('admin/berita') ? 'active' : '' }}">
             <a href="{{ route('berita.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <i class='menu-icon bx bxs-news'></i>
                 <div>Berita</div>
             </a>
         </li>

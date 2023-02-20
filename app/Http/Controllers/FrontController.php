@@ -15,7 +15,10 @@ class FrontController extends Controller
 {
     public function home()
     {
-        return view('front.pages.home');
+        $tentangSekolah = ProfilSekolah::first();
+        $visiDanMisiSekolah = VisiDanMisi::first();
+        $tentangKepalaSekolah = ProfilKepalaSekolah::first();
+        return view('front.pages.home',compact('tentangSekolah','visiDanMisiSekolah','tentangKepalaSekolah'));
     }
 
     public function guru()
