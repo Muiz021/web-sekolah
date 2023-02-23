@@ -2,6 +2,7 @@
 
 <script src="{{ asset('front/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 <!-- Jquery, Popper, Bootstrap -->
+{{--<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>--}}
 <script src="{{ asset('front/js/vendor/jquery-1.12.4.min.js') }}"></script>
 <script src="{{ asset('front/js/popper.min.js') }}"></script>
 <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
