@@ -69,6 +69,14 @@
             justify-content: center;
             height: 100%;
         }
+        .kartu-peserta-seleksi .content-wrapper .profil-img .card{
+            width: 150px;
+            height: 200px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
         .kartu-peserta-seleksi .content-wrapper tr td:nth-child(2) {
             width: 15px;
@@ -265,8 +273,8 @@
                 </table>
                </div>
                <div class="profil-img">
-                <div class="table">
-
+                <div class="card">
+                    <p>3x4</p>
                 </div>
                </div>
             </div>
