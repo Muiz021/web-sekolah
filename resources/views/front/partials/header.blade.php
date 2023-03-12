@@ -31,6 +31,7 @@
                                     </li>
                                     <li><a href="{{ route('front.guru') }}">Guru</a></li>
                                     <li><a href="{{ route('front.berita') }}">Berita</a></li>
+                                    <li><a href="{{ route('front.ppdb') }}">PPDB</a></li>
                                 </ul>
                             </nav>
                         </div>

@@ -108,5 +108,14 @@
                 <div>Berita</div>
             </a>
         </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">PPDB</span>
+        </li>
+        <li class="menu-item {{ request()->is('admin/berita') ? 'active' : '' }}">
+            <a href="{{ route('berita.index') }}" class="menu-link">
+                <i class='menu-icon bx bxs-news'></i>
+                <div>Siswa</div>
+            </a>
+        </li>
     </ul>
 </aside>
