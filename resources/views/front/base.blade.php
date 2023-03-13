@@ -29,31 +29,41 @@
 </head>
 
 <body>
-<!--? Preloader Start -->
-<div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-inner position-relative">
-            <div class="preloader-circle"></div>
-            <div class="preloader-img pere-text">
-                <img src="{{ asset('front/img/logo/logo.png ') }}" alt="">
+    <!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset('front/img/logo/logo.png ') }}" alt="">
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Preloader Start -->
+    <!-- Preloader Start -->
 
-@include('front.partials.header')
+    @include('front.partials.header')
 
-@yield('content')
+    @yield('content')
 
-@include('front.partials.footer')
-<!-- Scroll Up -->
-<div id="back-top">
-    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-</div>
+    @include('front.partials.footer')
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
 
-@include('front.partials.script')
-@stack('script')
+    @include('front.partials.script')
+    @stack('script')
+
+    <script type="text/javascript">
+        function status() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Maaf...',
+                text: 'Pendaftaran PPDB belum dibuka!',
+            })
+        }
+    </script>
 
 </body>
 

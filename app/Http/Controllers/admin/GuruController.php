@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Guru;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,7 @@ class GuruController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -21,9 +22,29 @@ class GuruController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, ['foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
+
+        $foto = $request->file('foto');
+        $destinationPath = 'images/foto/';
+        $profileImage = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
+        $foto->move($destinationPath, $profileImage);
+
+        Guru::create(['foto' => $profileImage, 'nama' => $request->nama, 'jabatan' => $request->jabatan,]);
+
+        return redirect()->back();
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -31,36 +52,10 @@ class GuruController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-
-        $foto = $request->file('foto');
-        $destinationPath = 'images/foto/';
-        $profileImage = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
-        $foto->move($destinationPath, $profileImage);
-
-        Guru::create([
-            'foto' => $profileImage,
-            'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
-        ]);
-
-        return redirect()->back();
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -70,8 +65,8 @@ class GuruController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -81,15 +76,13 @@ class GuruController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
+        $this->validate($request, ['foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
 
         $guru = Guru::findorfail($id);
 
@@ -102,16 +95,9 @@ class GuruController extends Controller
             $profileImage = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
             $foto->move($destinationPath, $profileImage);
 
-            $guru->update([
-                'foto' => $profileImage,
-                'nama' => $request->nama,
-                'jabatan' => $request->jabatan
-            ]);
+            $guru->update(['foto' => $profileImage, 'nama' => $request->nama, 'jabatan' => $request->jabatan]);
         } else {
-            $guru->update([
-                'nama' => $request->nama,
-                'jabatan' => $request->jabatan
-            ]);
+            $guru->update(['nama' => $request->nama, 'jabatan' => $request->jabatan]);
         }
 
         return redirect()->back();
@@ -120,8 +106,8 @@ class GuruController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {

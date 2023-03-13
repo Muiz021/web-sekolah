@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\PpdbStatus;
 use App\Models\ProfilKepalaSekolah;
 use App\Models\VisiDanMisi;
 use Illuminate\Support\Str;

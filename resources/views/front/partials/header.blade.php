@@ -31,7 +31,13 @@
                                     </li>
                                     <li><a href="{{ route('front.guru') }}">Guru</a></li>
                                     <li><a href="{{ route('front.berita') }}">Berita</a></li>
-                                    <li><a href="{{ route('front.ppdb') }}">PPDB</a></li>
+                                    <li>
+                                        @if(App\Models\PpdbStatus::first()->is_active  != 0)
+                                            <a href="{{ route('front.ppdb') }}">PPDB</a>
+                                        @else
+                                            <a onclick="status()" href="javascript:void(0);">PPDB</a>
+                                        @endif
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -50,3 +56,5 @@
     </div>
     <!-- Header End -->
 </header>
+
+

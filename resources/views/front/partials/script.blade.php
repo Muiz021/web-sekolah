@@ -37,3 +37,4 @@
 <!-- Jquery Plugins, main Jquery -->
 <script src="{{ asset('front/js/plugins.js') }}"></script>
 <script src="{{ asset('front/js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

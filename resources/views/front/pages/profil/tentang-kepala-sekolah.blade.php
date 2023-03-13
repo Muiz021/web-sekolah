@@ -23,18 +23,19 @@
         <div class="team-area pt-160">
             <div class="container mb-100">
                 @if ($tentangKepalaSekolah != null)
-                <div class="row">
-                    <div class="col-lg-8 col-md-8 mx-auto">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('images/foto/' . $tentangKepalaSekolah->gambar) }}" alt="">
-                        </div>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 mx-auto">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset('images/foto/' . $tentangKepalaSekolah->gambar) }}" alt=""
+                                     width="400">
+                            </div>
 
-                        <h1 class="my-5"><b>{{ $tentangKepalaSekolah->nama }}</b></h1>
-                        <div class="text-justify">
-                            {!! $tentangKepalaSekolah->deskripsi !!}
+                            <h1 class="my-5"><b>{{ $tentangKepalaSekolah->nama }}</b></h1>
+                            <div class="text-justify">
+                                {!! $tentangKepalaSekolah->deskripsi !!}
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>

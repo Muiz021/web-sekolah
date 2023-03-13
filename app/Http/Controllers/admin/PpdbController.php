@@ -3,21 +3,19 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Ppdb;
+use App\Models\PpdbStatus;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class UserController extends Controller
+class PpdbController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        $users = User::all();
-        return view('admin.pages.user.index', compact('users'));
+        $ajarans = TahunAjaran::all();
+        $status = PpdbStatus::latest()->first();
+        return view('admin.pages.ppdb.index', compact('status', 'ajarans'));
     }
 
     /**
@@ -28,7 +26,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        TahunAjaran::create($request->all());
         return redirect()->back();
     }
 
@@ -73,13 +71,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findorfail($id);
-
-        if ($request->password) {
-            $user->update(['nama' => $request->nama, 'username' => $request->username, 'password' => $request->password,]);
-        } else {
-            $user->update(['nama' => $request->nama, 'username' => $request->username,]);
-        }
+        $data = TahunAjaran::findOrFail($id);
+        $data->update($request->all());
         return redirect()->back();
     }
 
@@ -91,8 +84,27 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findorfail($id);
-        $user->delete();
+        $data = TahunAjaran::findOrFail($id);
+        $data->delete();
         return redirect()->back();
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $status = PpdbStatus::find($request->status_id);
+        $status->is_active = $request->is_active;
+        $status->save();
+        return response()->json(['success' => 'Status change successfully.']);
+    }
+
+    public function listSiswa(Request $request)
+    {
+        $awal = $request->tgl_awal;
+        $tgl_2 = $request->tgl_akhir;
+        $akhir = date('Y-m-d', strtotime($tgl_2 . ' +1 day'));
+
+        $data = Ppdb::whereBetween('created_at', [$awal, $akhir])->get();
+
+        return view('admin.pages.ppdb.list-siswa', compact('data'));
     }
 }
