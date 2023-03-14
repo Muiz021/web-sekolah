@@ -37,7 +37,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('guru', GuruController::class);
     Route::resource('user', UserController::class);
     Route::get('ppdb/update-status', [PpdbAdmin::class, 'updateStatus'])->name('ppdb.status-update');
-    Route::get('ppdb/list-siswa/{tgl_awal}/{tgl_akhir}', [PpdbAdmin::class, 'listSiswa'])->name('ppdb.siswa-list');
+    Route::get('ppdb/{id}/list-siswa/{tgl_awal}/{tgl_akhir}', [PpdbAdmin::class, 'listSiswa'])->name('ppdb.siswa-list');
+    Route::get('ppdb/{id}/list-siswa-export/{tgl_awal}/{tgl_akhir}', [PpdbAdmin::class, 'export'])->name('ppdb.list-siswa-export');
     Route::resource('ppdb', PpdbAdmin::class);
 
 });

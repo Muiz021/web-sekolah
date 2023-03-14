@@ -13,10 +13,10 @@
         <div class="card">
             <div class="card-header flex-column flex-md-row">
                 <div class="text-end pt-3 pt-md-0">
-                    {{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-user">--}}
-                    {{--    <span><i class="bx bx-plus me-sm-2"></i><span class="d-none d-sm-inline-block">Tambah--}}
-                    {{--            User</span></span>--}}
-                    {{--</button>--}}
+                    <a class="btn btn-success" href="{{ route('ppdb.list-siswa-export',[$awal,$akhir,$ta->id]) }}">
+                        <span><i class="bx bx-printer me-sm-2"></i><span
+                                class="d-none d-sm-inline-block">Export</span></span>
+                    </a>
                 </div>
                 <div class="card-datatable table-responsive">
                     <table class="datatables-users table border-top" id="user">
@@ -24,7 +24,10 @@
                         <tr>
                             <th>No.</th>
                             <th>Nama</th>
-                            <th>Aksi</th>
+                            <th>Alamat</th>
+                            <th>Asal Sekolah</th>
+                            <th>No. HP</th>
+                            {{--<th>Aksi</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -32,7 +35,9 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $siswa->nama }}</td>
-                                <td>Aksi</td>
+                                <td>{{ $siswa->alamat }}</td>
+                                <td>{{ $siswa->asal_sekolah }}</td>
+                                <td>{{ $siswa->no_hp }}</td>
                             </tr>
                         @endforeach
                         </tbody>

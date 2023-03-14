@@ -6,7 +6,7 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
 
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">PPDB</span></h4>
+        <h4 class="fw-bold py-3 mb-4">PPDB</h4>
 
         <div class="col-xxl">
             <div class="card mb-4">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tahun Ajaran</span></h4>
+            <h4 class="fw-bold py-3 mb-4">Tahun Ajaran</h4>
             <div class="flex-column flex-md-row mb-4">
                 <div class="text-end pt-3 pt-md-0">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -54,7 +54,7 @@
                                 Siswa
                             </p>
                             <a class="btn btn-info mx-1"
-                               href="{{ route('ppdb.siswa-list',['tgl_awal' => $tgl_awal,'tgl_akhir' => $tgl_2]) }}"><span><i
+                               href="{{ route('ppdb.siswa-list',['id' => $ajaran->id, 'tgl_awal' => $tgl_awal,'tgl_akhir' => $tgl_2]) }}"><span><i
                                         class="bx bx-list-ul"></i> <span
                                         class="d-none d-sm-inline-block">Detail</span></span>
                             </a>
