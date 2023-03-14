@@ -93,7 +93,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="browse-btn2 text-center mt-70">
-                            <a href="{{ route('front.guru') }}" class="btn white-btn">Lihat Semua Guru</a>
+                            <a href="{{ route('front.guru') }}" class="btn white-btn">See All Teachers</a>
                         </div>
                     </div>
                 </div>

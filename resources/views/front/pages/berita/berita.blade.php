@@ -28,7 +28,7 @@
                            <article class="blog_item">
                             <div class="blog_item_img">
                                 <div class="d-flex justify-content-center">
-                                    <img class="card-img rounded-0" src="{{asset('images/berita/'.$item->gambar)}}" alt="">
+                                    <img class="card-img rounded-0" src="{{asset('images/berita/'.$item->gambar)}}" alt="" style="max-height: 300px;">
                                 </div>
                                 <a href="{{url('berita-detail/'.$item->slug)}}" class="blog_item_date">
                                     <h3>{{date('d',strtotime($item->created_at))}}</h3>
@@ -40,10 +40,9 @@
                                     <h2 class="blog-head" style="color: #2d2d2d;">{{$item->judul}}</h2>
                                 </a>
                                 <p>{!!Str::limit($item->deskripsi,200)!!}</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
+                               <a href="#">
+                                <p>more >></p>
+                               </a>
                             </div>
                         </article>
                            @endforeach
