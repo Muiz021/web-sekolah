@@ -117,5 +117,14 @@
                 <div>PPDB</div>
             </a>
         </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Web Setting</span>
+        </li>
+        <li class="menu-item {{ request()->is('admin/slider*') ? 'active' : '' }}">
+            <a href="{{ route('slider.index') }}" class="menu-link">
+                <i class='menu-icon bx bxs-news'></i>
+                <div>Slider Home</div>
+            </a>
+        </li>
     </ul>
 </aside>

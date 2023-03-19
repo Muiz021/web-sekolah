@@ -4,18 +4,26 @@
 
 @section('content')
     <main>
-        <div class="slider-beranda">
-            <div class="container-fluid bg-dark-2">
-                <div class="row">
-                    <div class="col">
-                        <div class="d-flex justify-content-center">
-                            <a href="{{ route('front.tentang-sekolah') }}" class="btn">MTs LANGUAGE INSAN MANDIRI</a>
+        @if($sliders->count() != 0)
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    @foreach($sliders as $key => $slider)
+                        <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                            <img src="images/slider/{{ $slider->image }}" class="d-block w-100" alt="...">
                         </div>
-                    </div>
+                    @endforeach
                 </div>
+                <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-        </div>
-        {{-- Kepala Sekolah --}}
+        @endif
+
         @if($tentangKepalaSekolah != null)
             <div class="container box_1170">
                 <div class="section-top-border">
@@ -73,10 +81,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="owl-carousel">
-                        @foreach($gurus as $guru)
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="single-team mb-30">
+                    <div class="col-12">
+                        <div class="owl-carousel owl-theme">
+                            @foreach($gurus as $guru)
+                                {{--<div class="col-lg-12 col-md-12 col-sm-12">--}}
+                                <div class="single-team item mb-30">
                                     <div class="team-img">
                                         <img src="/images/foto/{{ $guru->foto }}" alt="">
                                     </div>
@@ -85,8 +94,9 @@
                                         <p>{{ $guru->jabatan }}</p>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                                {{--</div>--}}
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <!-- Section Button -->
@@ -146,6 +156,11 @@
     <script>
         $(document).ready(function () {
             $(".owl-carousel").owlCarousel()
+
+            $('#heroCarousel').carousel({
+                interval: 3000,
+                cycle: true
+            });
         })
     </script>
 @endpush
