@@ -13,9 +13,7 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                All rights reserved | This template is made with <i
-                                    class="fa fa-heart" aria-hidden="true"></i> by <a href="#"
-                                                                                      target="_blank">Exomatik</a>
+                                All rights reserved | MTs. LANGUAGE INSAN MANDIRI
                             </p>
                         </div>
                     </div>

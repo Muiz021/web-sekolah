@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Galeri;
 use App\Models\Guru;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class GuruController extends Controller
+class GaleriController extends Controller
 {
     public function index()
     {
-        $gurus = Guru::all();
-        return view('admin.pages.guru.index', compact('gurus'));
+        $galleries = Galeri::all();
+        return view('admin.pages.galeri.index', compact('galleries'));
     }
     
     public function store(Request $request)
@@ -21,11 +22,11 @@ class GuruController extends Controller
         $this->validate($request, ['foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
         
         $foto = $request->file('foto');
-        $destinationPath = 'images/foto/';
-        $profileImage = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
+        $destinationPath = 'images/galeri/';
+        $profileImage = time() . "." . $foto->getClientOriginalExtension();
         $foto->move($destinationPath, $profileImage);
         
-        Guru::create(['foto' => $profileImage, 'nama' => $request->nama, 'jabatan' => $request->jabatan,]);
+        Galeri::create(['foto' => $profileImage, 'judul' => $request->judul]);
         
         return redirect()->back();
     }
@@ -62,24 +63,31 @@ class GuruController extends Controller
         //
     }
     
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, ['foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
         
-        $guru = Guru::findorfail($id);
+        $galeri = Galeri::findorfail($id);
         
         if ($request->file('foto')) {
-            $file_path = public_path() . "/images/foto/" . $guru->foto;
+            $file_path = public_path() . "/images/galeri/" . $galeri->foto;
             unlink($file_path);
             
             $foto = $request->file('foto');
-            $destinationPath = 'images/foto/';
-            $profileImage = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
+            $destinationPath = 'images/galeri/';
+            $profileImage = time() . "." . $foto->getClientOriginalExtension();
             $foto->move($destinationPath, $profileImage);
             
-            $guru->update(['foto' => $profileImage, 'nama' => $request->nama, 'jabatan' => $request->jabatan]);
+            $galeri->update(['foto' => $profileImage, 'judul' => $request->judul, 'is_active' => $request->is_active]);
         } else {
-            $guru->update(['nama' => $request->nama, 'jabatan' => $request->jabatan]);
+            $galeri->update(['judul' => $request->judul, 'is_active' => $request->is_active]);
         }
         
         return redirect()->back();
@@ -93,12 +101,12 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        $guru = Guru::findorfail($id);
+        $galeri = Galeri::findorfail($id);
         
-        $file_path = public_path() . "/images/foto/" . $guru->foto;
+        $file_path = public_path() . "/images/galeri/" . $galeri->foto;
         unlink($file_path);
         
-        $guru->delete();
+        $galeri->delete();
         return redirect()->back();
     }
 }

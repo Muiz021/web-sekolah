@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\PpdbController as PpdbAdmin;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\PpdbController as PpdbUser;
@@ -31,20 +33,29 @@ Route::name('front.')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::resource('/profil-kepala-sekolah', ProfilKepalaSekolahController::class);
-    Route::resource('/profil-sekolah', ProfilSekolahController::class);
-    Route::resource('/visi-dan-misi', VisiDanMisiController::class);
-    Route::resource('/berita', BeritaSekolahController::class);
-    
-    Route::resource('guru', GuruController::class);
-    Route::resource('user', UserController::class);
-    Route::get('ppdb/update-status', [PpdbAdmin::class, 'updateStatus'])->name('ppdb.status-update');
-    Route::get('ppdb/{id}/list-siswa/{tgl_awal}/{tgl_akhir}', [PpdbAdmin::class, 'listSiswa'])->name('ppdb.siswa-list');
-    Route::get('ppdb/{id}/list-siswa-export/{tgl_awal}/{tgl_akhir}', [
-        PpdbAdmin::class, 'export',
-    ])->name('ppdb.list-siswa-export');
-    Route::resource('ppdb', PpdbAdmin::class);
-    Route::resource('slider', SliderController::class);
+    Route::get('login', [AuthController::class, 'index'])->name('login');
+    Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+    Route::middleware('auth')->group(function () {
+        Route::get('', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::resource('/profil-kepala-sekolah', ProfilKepalaSekolahController::class);
+        Route::resource('/profil-sekolah', ProfilSekolahController::class);
+        Route::resource('/visi-dan-misi', VisiDanMisiController::class);
+        Route::resource('/berita', BeritaSekolahController::class);
+        
+        Route::resource('guru', GuruController::class);
+        Route::resource('user', UserController::class);
+        Route::get('ppdb/update-status', [PpdbAdmin::class, 'updateStatus'])->name('ppdb.status-update');
+        Route::get('ppdb/{id}/list-siswa/{tgl_awal}/{tgl_akhir}', [
+            PpdbAdmin::class, 'listSiswa',
+        ])->name('ppdb.siswa-list');
+        Route::get('ppdb/{id}/list-siswa-export/{tgl_awal}/{tgl_akhir}', [
+            PpdbAdmin::class, 'export',
+        ])->name('ppdb.list-siswa-export');
+        Route::resource('ppdb', PpdbAdmin::class);
+        Route::resource('slider', SliderController::class);
+        Route::resource('galeri', GaleriController::class);
+        
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    });
 });
 

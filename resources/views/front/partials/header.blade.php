@@ -5,15 +5,21 @@
             <div class="header-bottom header-sticky">
                 <!-- Logo -->
                 <div class="logo d-none d-lg-block" style="padding: 10px 31px">
-                    <a href="{{route('front.home')}}"><img src="{{ asset('front/img/logo/logo.png') }}" width="80px"
-                                                           height="80px"
-                                                           alt=""></a>
+                    <a href="{{route('front.home')}}">
+                        <img src="{{ asset('front/img/logo/logo.png') }}" width="80px"
+                             height="80px"
+                             alt="">
+                    </a>
                 </div>
                 <div class="container">
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo logo2 d-block d-lg-none">
-                            {{-- <a href="index.html"><img src="{{ asset('front/img/logo/logo.png') }}" alt=""></a> --}}
+                            <a href="{{route('front.home')}}">
+                                <img src="{{ asset('front/img/logo/logo.png') }}" width="50px"
+                                     height="50px"
+                                     alt="">
+                            </a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block mx-auto">
@@ -43,7 +49,7 @@
                         </div>
                         <!-- Header-btn -->
                         <div class="header-search d-none d-lg-block">
-                            <a href="#" class="login"><i class="ti-user i-login"></i>Login</a>
+                            <a href="{{ route('login') }}" class="login"><i class="ti-user i-login"></i>Login</a>
                         </div>
                     </div>
                     <!-- Mobile Menu -->

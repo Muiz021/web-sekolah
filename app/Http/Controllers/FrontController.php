@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Galeri;
 use App\Models\Guru;
 use App\Models\PpdbStatus;
 use App\Models\ProfilKepalaSekolah;
@@ -58,7 +59,8 @@ class FrontController extends Controller
     public function tentang_sekolah()
     {
         $tentangSekolah = ProfilSekolah::first();
-        return view('front.pages.profil.tentang-sekolah', compact('tentangSekolah'));
+        $galleries = Galeri::where('is_active', 1)->take(6)->get();
+        return view('front.pages.profil.tentang-sekolah', compact('tentangSekolah', 'galleries'));
     }
     
     public function visi_dan_misi_sekolah()
