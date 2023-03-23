@@ -11,4 +11,12 @@ class Ppdb extends Model
 
     protected $table = 'ppdb_siswa';
     protected $guarded = ['id'];
+
+    public static function boot() {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->antrian = self::max('antrian') + 1;
+        });
+    }
+
 }

@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('ppdb_siswa', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('antrian')->default(1);
             $table->string('nama');
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');

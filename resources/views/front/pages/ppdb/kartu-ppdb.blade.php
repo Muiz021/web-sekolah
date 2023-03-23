@@ -4,7 +4,7 @@
 <head>
     <title>Kartu Peserta Seleksi</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
+    {{-- <style>
         .kartu-peserta-seleksi {
             padding: 16px;
             width: 100%;
@@ -90,6 +90,30 @@
         .kartu-peserta-seleksi .footer-wrapper p {
             margin-bottom: 0
         }
+    </style> --}}
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+    .kartu-peserta-seleksi-wrapper{
+        width: 100%;
+    }
+    .kartu-peserta-seleksi-wrapper .head-wrapper tr td p{
+        text-align: center;
+    }
+    .kartu-peserta-seleksi-wrapper .content-wrapper .profil-img .card{
+        width: 80%;
+        height: 180px;
+        text-align: center;
+    }
+    .kartu-peserta-seleksi-wrapper .content-wrapper .profil-img p{
+        margin:auto 0;
+    }
+    .kartu-peserta-seleksi-wrapper .footer-wrapper p{
+        text-align: right;
+        padding: 20px;
+    }
     </style>
 </head>
 
@@ -97,192 +121,91 @@
     <div class="kartu-peserta-seleksi-wrapper">
         <div class="kartu-peserta-seleksi">
             <div class="head-wrapper">
-                <div class="sec">
-                    <h5>No. Registrasi <strong>{{\Carbon\Carbon::now()->format('y')}}1-{{str_pad($ppdb->count(),5,'0',STR_PAD_LEFT)}}</strong></h3>
-                </div>
-                <div class="sec">
-                    <p>KARTU PESERTA</p>
-                    <p>SELEKSI MASUK MTs</p>
-                    <p>LANGUAGE INSAN MANDIRI</p>
-                    <p>TAHUN PELAJARAN {{\Carbon\Carbon::now()->format('Y')}}/{{\Carbon\Carbon::now()->addYear(1)->format('Y')}}</p>
-                </div>
-                <div class="sec"><img  src="{{ asset('front/img/logo/logo.png') }}" width="80px" alt="MA KHAS KEMPEK"></div>
-
+                <table width="100%">
+                    <tr>
+                        <td width="20%"><p>No. Registrasi <strong>{{\Carbon\Carbon::now()->format('y')}}1-{{str_pad($ppdb->antrian,3,'0',STR_PAD_LEFT)}}</strong></p></td>
+                        <td width="60%" class="text-kop">
+                            <p><b>
+                                KARTU PESERTA<br>
+                                SELEKSI MASUK MTs<br>
+                                LANGUAGE INSAN MANDIRI<br>
+                                TAHUN PELAJARAN {{\Carbon\Carbon::now()->format('Y')}}/{{\Carbon\Carbon::now()->addYear(1)->format('Y')}}</b></p>
+                            </td>
+                        <td width="20%"><img  src="{{ asset('front/img/logo/logo.png') }}" width="80px" alt="MA KHAS KEMPEK"></td>
+                    </tr>
+                </table>
             </div>
+
             <div class="content-wrapper">
                <div class="ini-table">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <h5>Data Siswa</h5>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nama</td>
-                            <td>:</td>
-                            <td>{{$ppdb->nama}}</td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Kelamin</td>
-                            <td>:</td>
-                            <td>{{$ppdb->jenis_kelamin}}</td>
-                        </tr>
-                        <tr>
-                            <td>TTL</td>
-                            <td>:</td>
-                            <td>{{$ppdb->tempat_lahir}}, {{\Carbon\Carbon::parse($ppdb->tanggal_lahir)->isoFormat('D MMMM Y')}}</td>
-                        </tr>
-                        <tr>
-                            <td>Berat Badan</td>
-                            <td>:</td>
-                            <td>{{$ppdb->berat_badan}}</td>
-                        </tr>
-                        <tr>
-                            <td>Tinggi Badan</td>
-                            <td>:</td>
-                            <td>{{$ppdb->tinggi_badan}}</td>
-                        </tr>
-                        @if($ppdb->riwayat_penyakit != null)
-                        <tr>
-                            <td>Riwayat Penyakit</td>
-                            <td>:</td>
-                            <td>{{$ppdb->riwayat_penyakit}}</td>
-                        </tr>
-                        @endif
-                        <tr>
-                            <td>Jumlah Saudara</td>
-                            <td>:</td>
-                            <td>{{$ppdb->jumlah_saudara}}</td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td>:</td>
-                            <td>{{$ppdb->alamat}}</td>
-                        </tr>
-                        <tr>
-                            <td>No Hp</td>
-                            <td>:</td>
-                            <td>{{$ppdb->no_hp}}</td>
-                        </tr>
-                        <tr>
-                            <td>Asal Sekolah</td>
-                            <td>:</td>
-                            <td>{{$ppdb->asal_sekolah}}</td>
-                        </tr>
-                        <tr>
-                            <td>NISN</td>
-                            <td>:</td>
-                            <td>{{$ppdb->nisn}}</td>
-                        </tr>
-                        <tr>
-                            <td>NIK</td>
-                            <td>:</td>
-                            <td>{{$ppdb->nik}}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Data Orang Tua/Wali</h5>
-                            </td>
-                        </tr>
-                        @if($ppdb->nama_ayah != null)
-                        <tr>
-                            <td>Nama Ayah</td>
-                            <td>:</td>
-                            <td>{{$ppdb->nama_ayah}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->tanggal_lahir_ayah != null)
-                        <tr>
-                            <td>Tanggal Lahir Ayah</td>
-                            <td>:</td>
-                            <td>{{\Carbon\Carbon::parse($ppdb->tanggal_lahir_ayah)->isoFormat('D MMMM Y')}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->pendidikan_ayah != null)
-                        <tr>
-                            <td>Pendidikan Ayah</td>
-                            <td>:</td>
-                            <td>{{$ppdb->pendidikan_ayah}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->pekerjaan_ayah != null)
-                        <tr>
-                            <td>Pekerjaan Ayah</td>
-                            <td>:</td>
-                            <td>{{$ppdb->pekerjaan_ayah}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->nama_ibu != null)
-                        <tr>
-                            <td>Nama Ibu</td>
-                            <td>:</td>
-                            <td>{{$ppdb->nama_ibu}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->tanggal_lahir_ibu != null)
-                        <tr>
-                            <td>Tanggal Lahir Ibu</td>
-                            <td>:</td>
-                            <td>{{\Carbon\Carbon::parse($ppdb->tanggal_lahir_ibu)->isoFormat('D MMMM Y')}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->pendidikan_ibu != null)
-                        <tr>
-                            <td>Pendidikan Ibu</td>
-                            <td>:</td>
-                            <td>{{$ppdb->pendidikan_ibu}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->pekerjaan_ibu != null)
-                        <tr>
-                            <td>Pekerjaan Ibu</td>
-                            <td>:</td>
-                            <td>{{$ppdb->pekerjaan_ibu}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->nama_wali != null)
-                        <tr>
-                            <td>Nama Wali</td>
-                            <td>:</td>
-                            <td>{{$ppdb->nama_wali}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->tanggal_lahir_wali != null)
-                        <tr>
-                            <td>Tanggal Lahir Wali</td>
-                            <td>:</td>
-                            <td>{{\Carbon\Carbon::parse($ppdb->tanggal_lahir_wali)->isoFormat('D MMMM Y')}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->pendidikan_wali != null)
-                        <tr>
-                            <td>Pendidikan Wali</td>
-                            <td>:</td>
-                            <td>{{$ppdb->pendidikan_wali}}</td>
-                        </tr>
-                        @endif
-                        @if($ppdb->pekerjaan_wali != null)
-                        <tr>
-                            <td>Pekerjaan Wali</td>
-                            <td>:</td>
-                            <td>{{$ppdb->pekerjaan_wali}}</td>
-                        </tr>
-                        @endif
-                    </tbody>
+                <table width="100%">
+                  <tr>
+                    <td width="80%">
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td colspan="3">
+                                        <h5>Data Siswa</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Nama</td>
+                                    <td width="3%">:</td>
+                                    <td width="77%">{{$ppdb->nama}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis Kelamin</td>
+                                    <td>:</td>
+                                    <td>{{$ppdb->jenis_kelamin}}</td>
+                                </tr>
+                                <tr>
+                                    <td>TTL</td>
+                                    <td>:</td>
+                                    <td>{{$ppdb->tempat_lahir}}, {{\Carbon\Carbon::parse($ppdb->tanggal_lahir)->isoFormat('D MMMM Y')}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>:</td>
+                                    <td>{{$ppdb->alamat}}</td>
+                                </tr>
+                                <tr>
+                                    <td>No Hp</td>
+                                    <td>:</td>
+                                    <td>{{$ppdb->no_hp}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Asal Sekolah</td>
+                                    <td>:</td>
+                                    <td>{{$ppdb->asal_sekolah}}</td>
+                                </tr>
+                                <tr>
+                                    <td>NISN</td>
+                                    <td>:</td>
+                                    <td>{{$ppdb->nisn}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <div class="profil-img">
+                            <div class="card">
+                                <p>3x4</p>
+                            </div>
+                           </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                        <div class="footer-wrapper">
+                            <p>Raja Ampat, {{\Carbon\Carbon::now()->isoFormat('D MMMM Y')}} <br>
+                                Kepala MTs. Language insan mandiri</p>
+                            <br><br>
+                            <p><strong>M. Farid Wijayanto, S.Kom</strong></p>
+                        </div>
+                    </td>
+                  </tr>
                 </table>
                </div>
-               <div class="profil-img">
-                <div class="card">
-                    <p>3x4</p>
-                </div>
-               </div>
-            </div>
-            <div class="footer-wrapper">
-                <p>Raja Ampat, {{\Carbon\Carbon::now()->isoFormat('D MMMM Y')}}</p>
-                <p>Kepala MTs. Language insan mandiri</p>
-                <br><br>
-                <p><strong>M. Farid Wijayanto, S.Kom</strong></p>
             </div>
         </div>
     </div>
