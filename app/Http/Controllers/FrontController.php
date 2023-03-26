@@ -18,21 +18,21 @@ class FrontController extends Controller
 {
     public function home()
     {
-        $tentangSekolah = ProfilSekolah::first();
-        $visiDanMisiSekolah = VisiDanMisi::first();
-        $tentangKepalaSekolah = ProfilKepalaSekolah::first();
+        $tentangSekolah = ProfilSekolah::where('konfigurasi',1)->first();
+        $visiDanMisiSekolah = VisiDanMisi::where('konfigurasi',1)->first();
+        $tentangKepalaSekolah = ProfilKepalaSekolah::where('konfigurasi',1)->first();
         $beritas = BeritaSekolah::latest()->take(4)->get();
         $gurus = Guru::all();
         $sliders = Slider::take(5)->orderBy('urutan', 'asc')->get();
         return view('front.pages.home', compact('tentangSekolah', 'gurus', 'beritas', 'visiDanMisiSekolah', 'tentangKepalaSekolah', 'sliders'));
     }
-    
+
     public function guru()
     {
         $gurus = Guru::all();
         return view('front.pages.guru', compact('gurus'));
     }
-    
+
     public function berita(Request $request)
     {
         if ($request) {
@@ -41,11 +41,11 @@ class FrontController extends Controller
             $beritaSekolah = BeritaSekolah::paginate(5);
         }
         $postTerbaru = BeritaSekolah::orderBy('created_at', 'DESC')->limit(6)->get();
-        
-        
+
+
         return view('front.pages.berita.berita', compact('beritaSekolah', 'postTerbaru', 'request'));
     }
-    
+
     public function berita_detail(Request $request, $slug)
     {
         if ($request) {
@@ -55,23 +55,23 @@ class FrontController extends Controller
         $postTerbaru = BeritaSekolah::orderBy('created_at', 'DESC')->limit(6)->get();
         return view('front.pages.berita.detail-berita', compact('beritaSekolah', 'postTerbaru', 'cariBerita', 'request'));
     }
-    
+
     public function tentang_sekolah()
     {
-        $tentangSekolah = ProfilSekolah::first();
+        $tentangSekolah = ProfilSekolah::where('konfigurasi',1)->first();
         $galleries = Galeri::where('is_active', 1)->take(6)->get();
         return view('front.pages.profil.tentang-sekolah', compact('tentangSekolah', 'galleries'));
     }
-    
+
     public function visi_dan_misi_sekolah()
     {
-        $visiDanMisiSekolah = VisiDanMisi::first();
+        $visiDanMisiSekolah = VisiDanMisi::where('konfigurasi',1)->first();
         return view('front.pages.profil.visi-dan-misi', compact('visiDanMisiSekolah'));
     }
-    
+
     public function tentang_kepala_sekolah()
     {
-        $tentangKepalaSekolah = ProfilKepalaSekolah::first();
+        $tentangKepalaSekolah = ProfilKepalaSekolah::where('konfigurasi',1)->first();
         return view('front.pages.profil.tentang-kepala-sekolah', compact('tentangKepalaSekolah'));
     }
 }

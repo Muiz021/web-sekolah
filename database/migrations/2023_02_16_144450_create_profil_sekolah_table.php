@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('profil_sekolah', function (Blueprint $table) {
             $table->id();
+            $table->integer('konfigurasi')->default(1);
             $table->string('nama')->nullable();
             $table->string('gambar')->nullable();
             $table->longText('deskripsi')->nullable();

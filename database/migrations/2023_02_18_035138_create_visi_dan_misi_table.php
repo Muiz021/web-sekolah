@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('visi_dan_misi', function (Blueprint $table) {
             $table->id();
+            $table->integer('konfigurasi')->default(1);
             $table->longText('deskripsi');
             $table->timestamps();
         });

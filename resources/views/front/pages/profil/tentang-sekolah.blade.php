@@ -2,7 +2,7 @@
 @section('title', 'Tentang Sekolah')
 
 @push('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
     <style>
         .gallery-block {
             padding-bottom: 60px;
@@ -92,16 +92,18 @@
 
             <div class="container mb-100">
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 mx-auto">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('images/foto/' . $tentangSekolah->gambar) }}" alt="">
-                        </div>
+                    @if ($tentangSekolah != null)
+                        <div class="col-lg-8 col-md-8 mx-auto">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset('images/foto/' . $tentangSekolah->gambar) }}" alt="">
+                            </div>
 
-                        <h1 class="my-5"><b>{{ $tentangSekolah->nama }}</b></h1>
-                        <div class="text-justify">
-                            {!! $tentangSekolah->deskripsi !!}
+                            <h1 class="my-5"><b>{{ $tentangSekolah->nama }}</b></h1>
+                            <div class="text-justify">
+                                {!! $tentangSekolah->deskripsi !!}
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -116,17 +118,17 @@
                             </div>
                             <section class="gallery-block cards-gallery">
                                 <div class="row">
-                                    @foreach($galleries as $gallery)
+                                    @foreach ($galleries as $gallery)
                                         <div class="col-md-6 col-lg-4">
                                             <div class="card border-0 transform-on-hover">
                                                 <a class="lightbox" href="/images/galeri/{{ $gallery->foto }}">
                                                     <img src="/images/galeri/{{ $gallery->foto }}" alt="Card Image"
-                                                         class="card-img-top">
+                                                        class="card-img-top">
                                                 </a>
                                                 <div class="card-body">
                                                     <h6><a href="#">{{ $gallery->judul }}</a></h6>
-                                                    {{--<p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur--}}
-                                                    {{--    adipiscing elit. Nunc quam urna.</p>--}}
+                                                    {{-- <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur --}}
+                                                    {{--    adipiscing elit. Nunc quam urna.</p> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +150,7 @@
                                 </h1>
                             </div>
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7141318898466!2d130.8182534146109!3d-0.4140681354130081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d5f1d04139a73a3%3A0xfa73757a1cdc4655!2sMTs.%20LANGUAGE%20INSAN%20MANDIRI!5e0!3m2!1sen!2sid!4v1679406222828!5m2!1sen!2sid"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.714129190302!2d130.81825341404343!3d-0.41407349969789525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d5f1d04139a73a3%3A0xfa73757a1cdc4655!2sMTs.%20LANGUAGE%20INSAN%20MANDIRI!5e0!3m2!1sid!2sid!4v1679840782116!5m2!1sid!2sid"
                                 width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
@@ -164,6 +166,8 @@
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script>
-        baguetteBox.run('.cards-gallery', {animation: 'slideIn'});
+        baguetteBox.run('.cards-gallery', {
+            animation: 'slideIn'
+        });
     </script>
 @endpush
