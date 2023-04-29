@@ -95,7 +95,7 @@
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ $data->id }}">
                     <div class="modal-body">
-                        Anda yakin ingin menghapus @yield('title') <b>{{ $data->nama }}</b>
+                        Anda yakin ingin menghapus <b>@yield('title')</b>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

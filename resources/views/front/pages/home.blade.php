@@ -91,7 +91,8 @@
                                     </div>
                                     <div class="team-caption">
                                         <h3><a href="#">{{ $guru->nama }}</a></h3>
-                                        <p>{{ $guru->jabatan }}</p>
+                                        <p class="mb-0">{{ $guru->jabatan }}</p>
+                                        <p><b>"{{ $guru->deskripsi }}"</b></p>
                                     </div>
                                 </div>
                                 {{--</div>--}}

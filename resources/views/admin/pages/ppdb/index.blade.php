@@ -3,6 +3,7 @@
 @endphp
 @extends('admin.base')
 
+@section('title', 'PPDB Sekolah')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
 

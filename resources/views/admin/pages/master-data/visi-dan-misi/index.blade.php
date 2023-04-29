@@ -1,38 +1,53 @@
 @extends('admin.base')
 
 
-@section('title', 'Visi dan Misi Sekolah')
+@section('title', 'Visi Dan Misi Sekolah')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">@yield('title')</h4>
-        <div class="card">
-            @if ($visiDanMisiSekolah == null)
-                <div class="card-header">
-                    <div class="col-lg-4 col-md-8">
-                        <a href="{{ url('/admin/visi-dan-misi/create') }}" class="btn btn-primary">
-                            Membuat
-                        </a>
-                    </div>
+        <div class="card mb-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    @if ($visiDanMisiSekolah == null)
+                        <div class="card-header">
+                            <div class="pt-3 pt-md-0">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#add-visi-misi">
+                                    <span><i class="bx bx-plus me-sm-2"></i><span class="d-none d-sm-inline-block">Tambah
+                                            Visi Dan Misi</span></span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
                 </div>
-            @endif
-            @if ($visiDanMisiSekolah != null)
-                <div class="card-body">
-                    <div>
-                        <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
-                        {!! $visiDanMisiSekolah->deskripsi !!}
-                        <form action="{{ url('/admin/visi-dan-misi/' . $visiDanMisiSekolah->id) }}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger float-end ms-3">
-                                Hapus
-                            </button>
-                        </form>
-                        <a href="{{ url('/admin/visi-dan-misi/' . $visiDanMisiSekolah->id . '/edit') }}" class="btn btn-success float-end">
-                            Edit
-                        </a>
+                @if ($visiDanMisiSekolah != null)
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
+                                    <div class="form-control">
+                                        {!! $visiDanMisiSekolah->deskripsi !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-danger btn-sm me-3" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#delete-modal-{{ $visiDanMisiSekolah->id }}"><span><i
+                                            class="bx bx-trash me-sm-2"></i> <span
+                                            class="d-none d-sm-inline-block">Delete</span></span>
+                                </button>
+                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#edit-modal-{{ $visiDanMisiSekolah->id }}"><span><i
+                                            class="bx bx-edit me-sm-2"></i> <span
+                                            class="d-none d-sm-inline-block">Edit</span></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
     </div>
+    @include('admin.pages.master-data.visi-dan-misi.modal')
 @endsection

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('back/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
 @endpush
 
+@section('title','Guru')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">Guru</h4>
@@ -18,7 +19,7 @@
                                 Guru</span></span>
                     </button>
                 </div>
-                <div class="card-datatable table-responsive">
+                <div class="card-datatable table-responsive mt-3">
                     <table class="datatables-users table border-top" id="guru">
                         <thead>
                             <tr>

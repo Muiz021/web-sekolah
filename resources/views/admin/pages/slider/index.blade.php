@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('back/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}"/>
 @endpush
 
+@section('title', 'Slider Home')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">Slider</h4>

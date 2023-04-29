@@ -40,7 +40,7 @@
                                     <h2 class="blog-head" style="color: #2d2d2d;">{{$item->judul}}</h2>
                                 </a>
                                 <p>{!!Str::limit($item->deskripsi,200)!!}</p>
-                               <a href="#">
+                               <a href="{{url('berita-detail/'.$item->slug)}}">
                                 <p>more >></p>
                                </a>
                             </div>

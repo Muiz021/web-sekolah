@@ -22,10 +22,12 @@ Route::name('front.')->group(function () {
     Route::get('/berita-detail/{slug}', [FrontController::class, 'berita_detail'])->name('berita_detail');
     Route::get('/tentang-sekolah', [FrontController::class, 'tentang_sekolah'])->name('tentang-sekolah');
     Route::get('/visi-dan-misi-sekolah', [
-        FrontController::class, 'visi_dan_misi_sekolah',
+        FrontController::class,
+        'visi_dan_misi_sekolah',
     ])->name('visi-dan-misi-sekolah');
     Route::get('/tentang-kepala-sekolah', [
-        FrontController::class, 'tentang_kepala_sekolah',
+        FrontController::class,
+        'tentang_kepala_sekolah',
     ])->name('tentang-kepala-sekolah');
     Route::get('ppdb', [PpdbUser::class, 'index'])->name('ppdb');
     Route::post('ppdb', [PpdbUser::class, 'store'])->name('ppdb.store');
@@ -41,21 +43,22 @@ Route::prefix('admin')->group(function () {
         Route::resource('/profil-sekolah', ProfilSekolahController::class);
         Route::resource('/visi-dan-misi', VisiDanMisiController::class);
         Route::resource('/berita', BeritaSekolahController::class);
-        
+
         Route::resource('guru', GuruController::class);
         Route::resource('user', UserController::class);
         Route::get('ppdb/update-status', [PpdbAdmin::class, 'updateStatus'])->name('ppdb.status-update');
         Route::get('ppdb/{id}/list-siswa/{tgl_awal}/{tgl_akhir}', [
-            PpdbAdmin::class, 'listSiswa',
+            PpdbAdmin::class,
+            'listSiswa',
         ])->name('ppdb.siswa-list');
         Route::get('ppdb/{id}/list-siswa-export/{tgl_awal}/{tgl_akhir}', [
-            PpdbAdmin::class, 'export',
+            PpdbAdmin::class,
+            'export',
         ])->name('ppdb.list-siswa-export');
         Route::resource('ppdb', PpdbAdmin::class);
         Route::resource('slider', SliderController::class);
         Route::resource('galeri', GaleriController::class);
-        
+
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
 });
-

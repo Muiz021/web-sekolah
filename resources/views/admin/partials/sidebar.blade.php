@@ -16,7 +16,7 @@
 
     <ul class="menu-inner py-1 mb-5">
         <!-- Page -->
-        <li class="menu-item">
+        <li class="menu-item {{ request()->is('admin') ? 'active' : '' }}">
             <a href="{{ route('dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div>Dashboard</div>

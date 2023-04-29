@@ -29,6 +29,13 @@
                                     required>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Deskripsi</label>
+                                <input type="text" name="deskripsi" class="form-control" placeholder="Masukkan Deskripsi Singkat"
+                                    required>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -71,6 +78,13 @@
                                         <label class="form-label">Jabatan</label>
                                         <input type="text" name="jabatan" class="form-control"
                                             value="{{ $guru->jabatan }}" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label class="form-label">Deskripsi</label>
+                                        <input type="text" name="deskripsi" class="form-control" value="{{$guru->deskripsi}}"
+                                            required>
                                     </div>
                                 </div>
                             </div>
