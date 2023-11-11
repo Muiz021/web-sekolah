@@ -10,7 +10,7 @@ use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\PDF;
 
 class PpdbController extends Controller
 {
