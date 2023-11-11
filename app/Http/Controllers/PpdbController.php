@@ -20,6 +20,11 @@ class PpdbController extends Controller
         return view('admin.pages.ppdb.index', compact('status', 'ajarans'));
     }
 
+    public function index_home()
+    {
+        return view('front.pages.ppdb.ppdb');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
