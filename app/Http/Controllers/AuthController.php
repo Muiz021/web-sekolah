@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,21 +15,21 @@ class AuthController extends Controller
         }
         return view('admin.login');
     }
-    
+
     public function proses_login(Request $request)
     {
         request()->validate(['username' => 'required', 'password' => 'required',]);
-        
+
         $kredensil = $request->only('username', 'password');
-        
+
         if (Auth::attempt($kredensil)) {
             Auth::user();
             return redirect()->route('dashboard.index');
         }
-        
+
         return redirect('login');
     }
-    
+
     public function logout(Request $request)
     {
         $request->session()->flush();

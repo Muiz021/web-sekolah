@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\GaleriController;
-use App\Http\Controllers\Admin\PpdbController as PpdbAdmin;
-use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\PpdbController as PpdbAdmin;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PpdbController as PpdbUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\Admin\GuruController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\VisiDanMisiController;
-use App\Http\Controllers\Admin\BeritaSekolahController;
-use App\Http\Controllers\Admin\ProfilSekolahController;
-use App\Http\Controllers\Admin\ProfilKepalaSekolahController;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisiDanMisiController;
+use App\Http\Controllers\BeritaSekolahController;
+use App\Http\Controllers\ProfilSekolahController;
+use App\Http\Controllers\ProfilKepalaSekolahController;
 
 Route::name('front.')->group(function () {
     Route::get('/', [FrontController::class, 'home'])->name('home');

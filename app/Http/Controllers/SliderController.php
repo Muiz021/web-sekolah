@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
@@ -17,26 +17,26 @@ class SliderController extends Controller
         $sliders = Slider::all();
         return view('admin.pages.slider.index', compact('sliders'));
     }
-    
+
     public function store(Request $request)
     {
         $this->validate($request, ['image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
-        
+
         $image = $request->file('image');
         $destinationPath = 'images/slider/';
         $profileImage = time() . "." . $image->getClientOriginalExtension();
         $image->move($destinationPath, $profileImage);
-        
+
         Slider::create(['image' => $profileImage, 'urutan' => $request->urutan,]);
-        
+
         return redirect()->back();
     }
-    
+
     public function create()
     {
         //
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -47,7 +47,7 @@ class SliderController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,7 +58,7 @@ class SliderController extends Controller
     {
         //
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -69,26 +69,26 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, ['image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
-        
+
         $slider = Slider::findorfail($id);
-        
+
         if ($request->file('image')) {
             $file_path = public_path() . "/images/slider/" . $slider->image;
             unlink($file_path);
-            
+
             $image = $request->file('image');
             $destinationPath = 'images/slider/';
             $profileImage = time() . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            
+
             $slider->update(['image' => $profileImage, 'urutan' => $request->urutan]);
         } else {
             $slider->update(['urutan' => $request->urutan]);
         }
-        
+
         return redirect()->back();
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -98,10 +98,10 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::findorfail($id);
-        
+
         $file_path = public_path() . "/images/slider/" . $slider->image;
         unlink($file_path);
-        
+
         $slider->delete();
         return redirect()->back();
     }

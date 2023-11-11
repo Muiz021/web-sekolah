@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\ProfilKepalaSekolah;
+use App\Models\ProfilSekolah;
 use App\Http\Controllers\Controller;
 
-class ProfilKepalaSekolahController extends Controller
+class ProfilSekolahController extends Controller
 {
     public function index()
     {
-        $data = ProfilKepalaSekolah::latest()->first();
-        return view('admin.pages.master-data.profil-kepala-sekolah.index', compact('data'));
+        $data = ProfilSekolah::latest()->first();
+        return view('admin.pages.master-data.profil-sekolah.index', compact('data'));
     }
-
 
     public function store(Request $request)
     {
@@ -27,15 +26,12 @@ class ProfilKepalaSekolahController extends Controller
         $namaGambar = Str::slug($request->nama) . "." . $foto->getClientOriginalExtension();
         $foto->move($penyimpananPublik, $namaGambar);
 
-        ProfilKepalaSekolah::create([
-            'gambar' => $namaGambar,
-            'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
+        ProfilSekolah::create([
+            'gambar' => $namaGambar, 'nama' => $request->nama, 'deskripsi' => $request->deskripsi,
         ]);
 
         return redirect()->back();
     }
-
 
     public function update(Request $request, $id)
     {
@@ -43,10 +39,10 @@ class ProfilKepalaSekolahController extends Controller
             'gambar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        $profilKepalaSekolah = ProfilKepalaSekolah::findorfail($id);
+        $profilSekolah = ProfilSekolah::findorfail($id);
 
         if ($request->file('gambar')) {
-            $file_path = public_path() . "/images/foto/" . $profilKepalaSekolah->gambar;
+            $file_path = public_path() . "/images/foto/" . $profilSekolah->gambar;
             unlink($file_path);
 
             $foto = $request->file('gambar');
@@ -55,15 +51,12 @@ class ProfilKepalaSekolahController extends Controller
             $foto->move($penyimpananPublik, $namaGambar);
 
 
-            $profilKepalaSekolah->update([
-                'gambar' => $namaGambar,
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
+            $profilSekolah->update([
+                'gambar' => $namaGambar, 'nama' => $request->nama, 'deskripsi' => $request->deskripsi,
             ]);
         } else {
-            $profilKepalaSekolah->update([
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
+            $profilSekolah->update([
+                'nama' => $request->nama, 'deskripsi' => $request->deskripsi,
             ]);
         }
 
@@ -72,12 +65,12 @@ class ProfilKepalaSekolahController extends Controller
 
     public function destroy($id)
     {
-        $profilKepalaSekolah = ProfilKepalaSekolah::findorfail($id);
+        $profilSekolah = ProfilSekolah::findorfail($id);
 
-        $file_path = public_path() . "/images/foto/" . $profilKepalaSekolah->gambar;
+        $file_path = public_path() . "/images/foto/" . $profilSekolah->gambar;
         unlink($file_path);
 
-        $profilKepalaSekolah->delete();
+        $profilSekolah->delete();
         return redirect()->back();
     }
 }

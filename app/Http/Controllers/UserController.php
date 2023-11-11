@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -19,7 +19,7 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.pages.user.index', compact('users'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -31,7 +31,7 @@ class UserController extends Controller
         User::create($request->all());
         return redirect()->back();
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +41,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -74,7 +74,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findorfail($id);
-        
+
         if ($request->password) {
             $user->update(['nama'     => $request->nama, 'username' => $request->username,
                            'password' => $request->password,
@@ -84,7 +84,7 @@ class UserController extends Controller
         }
         return redirect()->back();
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Galeri;
@@ -16,21 +16,21 @@ class GaleriController extends Controller
         $galleries = Galeri::all();
         return view('admin.pages.galeri.index', compact('galleries'));
     }
-    
+
     public function store(Request $request)
     {
         $this->validate($request, ['foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
-        
+
         $foto = $request->file('foto');
         $destinationPath = 'images/galeri/';
         $profileImage = time() . "." . $foto->getClientOriginalExtension();
         $foto->move($destinationPath, $profileImage);
-        
+
         Galeri::create(['foto' => $profileImage, 'judul' => $request->judul]);
-        
+
         return redirect()->back();
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +40,7 @@ class GaleriController extends Controller
     {
         //
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -51,7 +51,7 @@ class GaleriController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -62,7 +62,7 @@ class GaleriController extends Controller
     {
         //
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -73,26 +73,26 @@ class GaleriController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, ['foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
-        
+
         $galeri = Galeri::findorfail($id);
-        
+
         if ($request->file('foto')) {
             $file_path = public_path() . "/images/galeri/" . $galeri->foto;
             unlink($file_path);
-            
+
             $foto = $request->file('foto');
             $destinationPath = 'images/galeri/';
             $profileImage = time() . "." . $foto->getClientOriginalExtension();
             $foto->move($destinationPath, $profileImage);
-            
+
             $galeri->update(['foto' => $profileImage, 'judul' => $request->judul, 'is_active' => $request->is_active]);
         } else {
             $galeri->update(['judul' => $request->judul, 'is_active' => $request->is_active]);
         }
-        
+
         return redirect()->back();
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -102,10 +102,10 @@ class GaleriController extends Controller
     public function destroy($id)
     {
         $galeri = Galeri::findorfail($id);
-        
+
         $file_path = public_path() . "/images/galeri/" . $galeri->foto;
         unlink($file_path);
-        
+
         $galeri->delete();
         return redirect()->back();
     }
