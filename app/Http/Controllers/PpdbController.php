@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\SiswaExport;
-use App\Http\Controllers\Controller;
 use App\Models\Ppdb;
+// use Barryvdh\DomPDF\PDF;
 use App\Models\PpdbStatus;
 use App\Models\TahunAjaran;
+use App\Exports\SiswaExport;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 
 class PpdbController extends Controller
 {
@@ -38,7 +39,7 @@ class PpdbController extends Controller
         return redirect()->back();
     }
 
-    public function home_store(Request $request)
+    public function  home_store(Request $request)
     {
         try {
             $ppdb = Ppdb::create($request->all());
