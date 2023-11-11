@@ -10,6 +10,7 @@ use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class PpdbController extends Controller
 {
@@ -37,36 +38,29 @@ class PpdbController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public function home_store(Request $request)
     {
-        //
+        try {
+            $ppdb = Ppdb::create($request->all());
+
+            // Generate the PDF file and stream it to the browser.
+            $pdf = PDF::loadView('front.pages.ppdb.kartu-ppdb', compact('ppdb'))->setPaper('A4', 'potrait');
+            $pdf->render();
+            $waktu = \Carbon\Carbon::now();
+            return $pdf->stream("kartu_ppdb_$waktu.pdf");
+        } catch (\Exception $e) {
+            // Handle any errors and return an appropriate response.
+            return redirect()->back()->withInput()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
+     * Display the PPDB card for the specified ID.
      */
-    public function show($id)
+    public function view($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+        $ppdb = Ppdb::findOrFail($id);
+        return view('front.pages.ppdb.kartu-ppdb', compact('ppdb'));
     }
 
     /**

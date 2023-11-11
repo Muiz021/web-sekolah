@@ -8,5 +8,5 @@ class TahunAjaran extends Model
 {
     protected $table = 'tahun_ajaran';
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 }
