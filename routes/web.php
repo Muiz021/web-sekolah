@@ -30,7 +30,7 @@ Route::name('front.')->group(function () {
         'tentang_kepala_sekolah',
     ])->name('tentang-kepala-sekolah');
     Route::get('ppdb', [PpdbUser::class, 'index_home'])->name('ppdb');
-    Route::post('ppdb', [PpdbUser::class, 'store'])->name('ppdb.store');
+    Route::post('ppdb', [PpdbUser::class, 'home_store'])->name('ppdb.store');
     Route::get('view-ppdb/{id}', [PpdbUser::class, 'view'])->name('ppdb.view');
 });
 
